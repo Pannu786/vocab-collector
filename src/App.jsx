@@ -50,7 +50,7 @@ const App = () => {
             setMeaning={setMeaning}
             addWord={addWord}
           />
-          <WordsList words={words} />
+          <WordsList words={words} setWords={setWords}  />
         </Container>
       </Box>
     </>
