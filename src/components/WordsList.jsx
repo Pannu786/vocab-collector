@@ -1,9 +1,23 @@
-import React from 'react'
+import { Box, List, ListItem, ListItemText } from '@mui/material';
 
-const WordsList = () => {
+const WordsList = ({ words }) => {
   return (
-    <div>WordsList</div>
-  )
-}
+    <Box>
+      {words.length > 0 ? (
+        <List>
+          {words.map(({ word, meaning }, i) => (
+            <ListItem key={i}>
+              <ListItemText primary={word} secondary={meaning} />
+            </ListItem>
+          ))}
+        </List>
+      ) : (
+        <ListItem>
+          <ListItemText primary='No words added yet' />
+        </ListItem>
+      )}
+    </Box>
+  );
+};
 
-export default WordsList
+export default WordsList;

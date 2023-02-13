@@ -1,12 +1,7 @@
 import { useState } from 'react';
-import TextField from '@mui/material/TextField';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import Button from '@mui/material/Button';
-import Dialog from '@mui/material/Dialog';
-import Box from '@mui/material/Box';
-import Container from '@mui/material/Container';
-import CssBaseline from '@mui/material/CssBaseline';
+import { Container, CssBaseline, Box, Typography } from '@mui/material';
+import AddWordsForm from './components/AddWordsForm';
+import WordsList from './components/WordsList';
 import wallpic from './assets/wallpic.jpg';
 
 const App = () => {
@@ -22,41 +17,12 @@ const App = () => {
     setMeaning('');
   };
 
-  // Render the form for adding a new word and its meaning
-  const renderForm = () => (
-    <Box display='flex' flexDirection='column' alignItems='center' mt={2}>
-      <TextField
-        label='Add-Word'
-        value={word}
-        onChange={(e) => setWord(e.target.value)}
-      />
-      <TextField
-        label='Meaning'
-        value={meaning}
-        onChange={(e) => setMeaning(e.target.value)}
-      />
-      <Button onClick={addWord}>Add Word</Button>
-    </Box>
-  );
-
-  // Render the list of words
-  const renderList = () => (
-    <List>
-      {words.map(({ word, meaning }, index) => (
-        <ListItem key={index}>
-          <div>{word}</div>
-          <div>{meaning}</div>
-        </ListItem>
-      ))}
-    </List>
-  );
-
   return (
     <>
       <CssBaseline />
+
       <Box
         sx={{
-          position: 'absolute',
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
@@ -72,8 +38,19 @@ const App = () => {
         }}
       >
         <Container maxWidth='sm'>
-          {renderForm()}
-          {renderList()}
+          <Box>
+            <Typography variant='h3' component='h1' gutterBottom align='center'>
+              Vocab Collector
+            </Typography>
+          </Box>
+          <AddWordsForm
+            word={word}
+            meaning={meaning}
+            setWord={setWord}
+            setMeaning={setMeaning}
+            addWord={addWord}
+          />
+          <WordsList words={words} />
         </Container>
       </Box>
     </>
