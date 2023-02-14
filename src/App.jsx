@@ -7,6 +7,10 @@ import wallpic from './assets/wallpic.jpg';
 const App = () => {
   const [words, setWords] = useState([]); // initialize the words state as an empty array
 
+  const [editWord, setEditWord] = useState('');
+
+  const [editMeaning, setEditMeaning] = useState('');
+
   const [word, setWord] = useState(''); // initialize the word state as an empty string
   const [meaning, setMeaning] = useState(''); // initialize the meaning state as an empty string
 
@@ -50,7 +54,7 @@ const App = () => {
             setMeaning={setMeaning}
             addWord={addWord}
           />
-          <WordsList words={words} setWords={setWords}  />
+          <WordsList words={words} setWords={setWords} />
         </Container>
       </Box>
     </>

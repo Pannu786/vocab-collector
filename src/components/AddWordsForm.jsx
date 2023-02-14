@@ -31,3 +31,4 @@ const AddWordsForm = ({ word, setWord, meaning, setMeaning, addWord }) => {
 };
 
 export default AddWordsForm;
+

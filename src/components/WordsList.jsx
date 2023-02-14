@@ -1,7 +1,19 @@
 import { Box, List, ListItem, ListItemText } from '@mui/material';
 import DeleteWords from './DeleteWords';
+import Edit from './Edit';
 
-const WordsList = ({ words, setWords,word }) => {
+const WordsList = ({
+  words,
+  setWords,
+  word,
+  meaning,
+  setWord,
+  setMeaning,
+  editWord,
+  setEditWord,
+  editMeaning,
+  setEditMeaning,
+}) => {
   return (
     <Box>
       {words.length > 0 ? (
@@ -14,6 +26,18 @@ const WordsList = ({ words, setWords,word }) => {
                 setWords={setWords}
                 word={word}
                 meaning={meaning}
+              />
+              <Edit
+                words={words}
+                setWords={setWords}
+                word={word}
+                meaning={meaning}
+                setWord={setWord}
+                editWord={editWord}
+                editMeaning={editMeaning}
+                setEditMeaning={setEditMeaning}
+                setEditWord={setEditWord}
+                setMeaning={setMeaning}
               />
             </ListItem>
           ))}

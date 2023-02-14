@@ -1,14 +1,13 @@
 import { IconButton } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 
-const DeleteWords = ({ setWords, i, word, meaning }) => {
+const DeleteWords = ({ setWords, i, word, meaning, setMeaning }) => {
+  const deletedWord = () => {
+    setWords((prevWords) => [...prevWords.filter((_, index) => index !== i)]);
+  };
+
   return (
-    <IconButton
-      onClick={() => {
-        console.log(`Delete word${word}`);
-        setWords((prevWords) => [...prevWords.filter((_, index) => index !== i)]);
-      }}
-    >
+    <IconButton onClick={deletedWord}>
       <DeleteIcon />
     </IconButton>
   );
