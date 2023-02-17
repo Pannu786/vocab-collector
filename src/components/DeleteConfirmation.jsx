@@ -1,7 +1,17 @@
-import React from 'react';
+import {
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+  BUtton,
+} from '@mui/material';
 
 const DeleteConfirmation = () => {
-  return <div>DeleteConfirmation</div>;
+  return (
+    <Dialog open={open} onClose={onClose}>
+      <DialogContent></DialogContent>
+    </Dialog>
+  );
 };
 
 export default DeleteConfirmation;
