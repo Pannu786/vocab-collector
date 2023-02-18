@@ -1,15 +1,44 @@
+import { useState } from 'react';
 import { IconButton } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
+import DeleteConfirmation from './DeleteConfirmation';
 
-const DeleteWords = ({ setWords, i, word, meaning, setMeaning }) => {
-  const deletedWord = () => {
-    setWords((prevWords) => [...prevWords.filter((_, index) => index !== i)]);
+const DeleteWords = ({ setWords, i, meaning, word, words }) => {
+  const [confirmationOpen, setConfirmationOpen] = useState(false);
+
+  const handleDelete = () => {
+    setConfirmationOpen(true);
   };
 
+  const handleConfirmDelete = () => {
+    if (words) {
+      const filteredWords = words.filter((w, index) => index !== i);
+      setWords(filteredWords);
+    }
+    setConfirmationOpen(false);
+  };
+
+  const handleCancelDelete = () => {
+    setConfirmationOpen(false);
+  };
+
+  // const deletedWord = () => {
+  //   setWords((prevWords) => [...prevWords.filter((_, index) => index !== i)]);
+  // };
+
   return (
-    <IconButton onClick={deletedWord}>
-      <DeleteIcon />
-    </IconButton>
+    <>
+      <IconButton onClick={handleDelete} aria-label='delete'>
+        <DeleteIcon />
+      </IconButton>
+      <DeleteConfirmation
+        open={confirmationOpen}
+        onClose={handleCancelDelete}
+        onConfirm={handleConfirmDelete}
+        meaning={meaning}
+        word={word}
+      />
+    </>
   );
 };
 

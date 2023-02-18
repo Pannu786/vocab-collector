@@ -5,8 +5,6 @@ import EditWord from './EditWord';
 const WordsList = ({
   words,
   setWords,
-  word,
-  meaning,
   setWord,
   setMeaning,
   editWord,
@@ -24,8 +22,9 @@ const WordsList = ({
               <DeleteWords
                 i={i}
                 setWords={setWords}
-                word={word}
+                words={words}
                 meaning={meaning}
+                word={word}
               />
               <EditWord
                 words={words}
