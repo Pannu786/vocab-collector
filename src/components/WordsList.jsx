@@ -13,9 +13,9 @@ const WordsList = ({
   setEditMeaning,
 }) => {
   return (
-    <Box>
+    <Box sx={{ flexGrow: 1, overflow: 'auto' }}>
       {words.length > 0 ? (
-        <List>
+        <List sx={{ py: 2 }}>
           {words.map(({ word, meaning }, i) => (
             <ListItem key={i}>
               <ListItemText primary={word} secondary={meaning} />{' '}

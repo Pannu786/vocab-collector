@@ -24,7 +24,6 @@ const App = () => {
   return (
     <>
       <CssBaseline />
-
       <Box
         sx={{
           display: 'flex',
