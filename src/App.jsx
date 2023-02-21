@@ -41,11 +41,23 @@ const App = () => {
         }}
       >
         <Container maxWidth='sm'>
-          <Box>
-            <Typography variant='h3' component='h1' gutterBottom align='center'>
+          <Box sx={{ mt: '3rem' }}>
+            <Typography
+              variant='h3'
+              component='h1'
+              gutterBottom
+              sx={{
+                position: 'fixed',
+                top: 0,
+                left: 0,
+                right: 0,
+                textAlign: 'center',
+              }}
+            >
               Vocab Collector
             </Typography>
           </Box>
+
           <AddWordsForm
             word={word}
             meaning={meaning}
@@ -53,6 +65,7 @@ const App = () => {
             setMeaning={setMeaning}
             addWord={addWord}
           />
+
           <WordsList
             words={words}
             setWords={setWords}

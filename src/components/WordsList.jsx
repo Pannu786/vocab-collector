@@ -13,10 +13,10 @@ const WordsList = ({
   setEditMeaning,
 }) => {
   return (
-    <Box sx={{ flexGrow: 1, overflow: 'auto' }}>
-      {words.length > 0 ? (
-        <List sx={{ py: 2 }}>
-          {words.map(({ word, meaning }, i) => (
+    <Box sx={{ flexGrow: 1, }}>
+      <List sx={{ maxHeight: '400px', overflow: 'auto', py: 2 }}>
+        {words.length > 0 ? (
+          words.map(({ word, meaning }, i) => (
             <ListItem key={i}>
               <ListItemText primary={word} secondary={meaning} />{' '}
               <DeleteWords
@@ -40,13 +40,13 @@ const WordsList = ({
                 i={i}
               />
             </ListItem>
-          ))}
-        </List>
-      ) : (
-        <ListItem>
-          <ListItemText primary='No words added yet' />
-        </ListItem>
-      )}
+          ))
+        ) : (
+          <ListItem>
+            <ListItemText primary='No words added yet' />
+          </ListItem>
+        )}{' '}
+      </List>
     </Box>
   );
 };

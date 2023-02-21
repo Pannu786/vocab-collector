@@ -3,7 +3,7 @@ import { Typography, Box, Container, Button, TextField } from '@mui/material';
 const AddWordsForm = ({ word, setWord, meaning, setMeaning, addWord }) => {
   return (
     <>
-      <Box display='flex' flexDirection='column' mt={2}>
+      <Box display='flex' flexDirection='column' width='100%'>
         <TextField
           variant='standard'
           label='Add New Word'
@@ -19,7 +19,7 @@ const AddWordsForm = ({ word, setWord, meaning, setMeaning, addWord }) => {
         <Button
           size='small'
           variant='outlined'
-          sx={{ m:'auto', p: 1, width: 100 }}
+          sx={{ m: 'auto', p: 1, width: 100 }}
           onClick={addWord}
           font='bold'
         >
@@ -31,4 +31,3 @@ const AddWordsForm = ({ word, setWord, meaning, setMeaning, addWord }) => {
 };
 
 export default AddWordsForm;
-

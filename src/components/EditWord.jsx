@@ -1,7 +1,6 @@
 import { TextField, Button, IconButton } from '@mui/material';
 import { useState } from 'react';
 import EditIcon from '@mui/icons-material/Edit';
-import WordsList from './WordsList';
 
 const EditWord = ({
   words,
