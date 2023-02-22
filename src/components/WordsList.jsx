@@ -14,7 +14,7 @@ const WordsList = ({
 }) => {
   return (
     <Box sx={{ flexGrow: 1, }}>
-      <List sx={{ maxHeight: '400px', overflow: 'auto', py: 2 }}>
+      <List sx={{ maxHeight: '20rem', overflow: 'auto' }}>
         {words.length > 0 ? (
           words.map(({ word, meaning }, i) => (
             <ListItem key={i}>
