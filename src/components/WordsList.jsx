@@ -1,6 +1,16 @@
-import { Box, List, ListItem, ListItemText } from '@mui/material';
+import {
+  Box,
+  List,
+  ListItem,
+  ListItemText,
+  Container,
+  Pagination,
+} from '@mui/material';
 import DeleteWords from './DeleteWords';
 import EditWord from './EditWord';
+import { useState } from 'react';
+
+const PAGE_SIZE = 4;
 
 const WordsList = ({
   words,
@@ -12,11 +22,19 @@ const WordsList = ({
   editMeaning,
   setEditMeaning,
 }) => {
+  const [page, setPage] = useState(1);
+  const numPages = Math.ceil(words.length / PAGE_SIZE);
+
+  const handlePageChange = (event, value) => {
+    setPage(value);
+  };
+
   return (
-    <Box sx={{ flexGrow: 1, }}>
+    <Box sx={{ flexGrow: 1 }}>
       <List sx={{ maxHeight: '20rem', overflow: 'auto' }}>
-        {words.length > 0 ? (
-          words.map(({ word, meaning }, i) => (
+        {words
+          .slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE)
+          .map(({ word, meaning }, i) => (
             <ListItem key={i}>
               <ListItemText primary={word} secondary={meaning} />{' '}
               <DeleteWords
@@ -40,13 +58,16 @@ const WordsList = ({
                 i={i}
               />
             </ListItem>
-          ))
-        ) : (
+          ))}
+        {words.length === 0 && (
           <ListItem>
             <ListItemText primary='No words added yet' />
           </ListItem>
-        )}{' '}
+        )}
       </List>
+      <Box sx={{ display: 'felx', justifyContent: 'center' }}>
+        <Pagination count={numPages} page={page} onChange={handlePageChange} />
+      </Box>
     </Box>
   );
 };

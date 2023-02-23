@@ -33,11 +33,13 @@ const AddWordsForm = ({ word, setWord, meaning, setMeaning, addWord }) => {
           onChange={(e) => setMeaning(e.target.value)}
         />
         <Button
+          
           size='small'
           variant='outlined'
-          sx={{ m: 'auto', p: 1, width: 100 }}
+          sx={{ m: 'auto', p:1 , width: 100,my: 4}}
           onClick={addWord}
           font='bold'
+          
         >
           New Word
         </Button>

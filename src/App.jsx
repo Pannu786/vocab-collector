@@ -59,7 +59,6 @@ const App = () => {
           </Box>
 
           <AddWordsForm
-          
             word={word}
             meaning={meaning}
             setWord={setWord}
@@ -68,7 +67,7 @@ const App = () => {
           />
 
           <WordsList
-        
+            
             words={words}
             setWords={setWords}
             word={word}
