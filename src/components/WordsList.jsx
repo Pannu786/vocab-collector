@@ -29,6 +29,12 @@ const WordsList = ({
     setPage(value);
   };
 
+  const handleEditWord = (index, newWord, newMeaning) => {
+    const newWords = [...preWords];
+    newWords[index] = { word: newWord, meaning: newMeaning };
+    return newWords;
+  };
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <List sx={{ maxHeight: '20rem', overflow: 'auto' }}>
@@ -65,8 +71,9 @@ const WordsList = ({
           </ListItem>
         )}
       </List>
-      <Box sx={{ display: 'felx', justifyContent: 'center' }}>
-        <Pagination count={numPages} page={page} onChange={handlePageChange} />
+      <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+        <Pagination count={numPages} page={page} onChange={handlePageChange}  size='small'/>
+       
       </Box>
     </Box>
   );
