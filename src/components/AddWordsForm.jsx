@@ -4,7 +4,6 @@ const AddWordsForm = ({ word, setWord, meaning, setMeaning, addWord }) => {
   return (
     <Container
       sx={{
-       
         position: 'fixed',
         top: 59,
         left: 0,
@@ -33,10 +32,9 @@ const AddWordsForm = ({ word, setWord, meaning, setMeaning, addWord }) => {
           onChange={(e) => setMeaning(e.target.value)}
         />
         <Button
-          
           size='small'
           variant='outlined'
-          sx={{ m: 'auto', p:1 , width: 100,my: 4}}
+          sx={{ m: 'auto', p: 1, width: 100, my: 4 }}
           onClick={addWord}
           font='bold'
           

@@ -67,7 +67,6 @@ const App = () => {
           />
 
           <WordsList
-            
             words={words}
             setWords={setWords}
             word={word}

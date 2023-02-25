@@ -29,15 +29,9 @@ const WordsList = ({
     setPage(value);
   };
 
-  const handleEditWord = (index, newWord, newMeaning) => {
-    const newWords = [...preWords];
-    newWords[index] = { word: newWord, meaning: newMeaning };
-    return newWords;
-  };
-
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <List sx={{ maxHeight: '20rem', overflow: 'auto' }}>
+    <Container fixed maxWidth='md' sx={{ flexGrow: 1 }}>
+      <List sx={{ maxHeight: '20rem', overflow: 'auto', top: 5 }}>
         {words
           .slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE)
           .map(({ word, meaning }, i) => (
@@ -61,7 +55,7 @@ const WordsList = ({
                 setEditMeaning={setEditMeaning}
                 setEditWord={setEditWord}
                 setMeaning={setMeaning}
-                i={i}
+                i={i + (page - 1) * PAGE_SIZE}
               />
             </ListItem>
           ))}
@@ -72,10 +66,14 @@ const WordsList = ({
         )}
       </List>
       <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-        <Pagination count={numPages} page={page} onChange={handlePageChange}  size='small'/>
-       
+        <Pagination
+          count={numPages}
+          page={page}
+          onChange={handlePageChange}
+          size='small'
+        />
       </Box>
-    </Box>
+    </Container>
   );
 };
 
