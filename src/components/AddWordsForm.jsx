@@ -37,7 +37,7 @@ const AddWordsForm = ({ word, setWord, meaning, setMeaning, addWord }) => {
           sx={{ m: 'auto', p: 1, width: 100, my: 4 }}
           onClick={addWord}
           font='bold'
-          
+          disabled={!word || !meaning}
         >
           New Word
         </Button>

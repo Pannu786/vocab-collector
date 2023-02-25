@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Container, CssBaseline, Box, Typography } from '@mui/material';
+import Alert from '@mui/material/Alert';
 import AddWordsForm from './components/AddWordsForm';
 import WordsList from './components/WordsList';
 import wallpic from './assets/wallpic.jpg';
@@ -13,9 +14,17 @@ const App = () => {
 
   const [word, setWord] = useState(''); // initialize the word state as an empty string
   const [meaning, setMeaning] = useState(''); // initialize the meaning state as an empty string
+  const [showAlert, setShowAlert] = useState(false);
 
   // Add a new word and its meaning to the words state
   const addWord = () => {
+    const existingWord = words.find((w) => w.word === word);
+
+    if (existingWord) {
+      setShowAlert(true);
+      return;
+    }
+
     setWords([...words, { word, meaning }]);
     setWord('');
     setMeaning('');
@@ -57,7 +66,11 @@ const App = () => {
               Vocab Collector
             </Typography>
           </Box>
-
+          {showAlert && (
+            <Alert severity='info' onClose={() => setShowAlert(false)}>
+              `{word} already exists`
+            </Alert>
+          )}
           <AddWordsForm
             word={word}
             meaning={meaning}
