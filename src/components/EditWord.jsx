@@ -1,4 +1,12 @@
-import { TextField, Button, IconButton } from '@mui/material';
+import {
+  TextField,
+  Button,
+  IconButton,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+} from '@mui/material';
 import { useState } from 'react';
 import EditIcon from '@mui/icons-material/Edit';
 
@@ -26,7 +34,10 @@ const EditWord = ({
   const handleSave = () => {
     const updatedWords = words.map((w, index) => {
       if (index === i) {
-        return { word: editWord, meaning: editMeaning };
+        return {
+          word: editWord,
+          meaning: editMeaning,
+        };
       }
       return w;
     });
@@ -42,30 +53,32 @@ const EditWord = ({
 
   return (
     <>
-      {isEditing ? (
-        <>
+      <Dialog open={isEditing} onClose={handleCancel}>
+        <DialogTitle>Edit Word</DialogTitle>
+        <DialogContent>
           <TextField
             label='Edit Word'
             value={editWord}
             onChange={(e) => setEditWord(e.target.value)}
-            sx={{ mr: 1 }}
+            fullWidth
+            margin='dense'
           />
           <TextField
             label={'Edit Meaning'}
             value={editMeaning}
             onChange={(e) => setEditMeaning(e.target.value)}
-            sx={{ mr: 1 }}
+            fullWidth
+            margin='dense'
           />
-          <Button onClick={handleSave} sx={{ mr: 1 }}>
-            Save
-          </Button>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleSave}>Save</Button>
           <Button onClick={handleCancel}>Cancel</Button>
-        </>
-      ) : (
-        <IconButton onClick={handleEdit} size='large'>
-          <EditIcon />
-        </IconButton>
-      )}
+        </DialogActions>
+      </Dialog>
+      <IconButton onClick={handleEdit} size='small'>
+        <EditIcon />
+      </IconButton>
     </>
   );
 };

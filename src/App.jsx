@@ -18,14 +18,22 @@ const App = () => {
 
   // Add a new word and its meaning to the words state
   const addWord = () => {
-    const existingWord = words.find((w) => w.word === word);
+    const existingWord = words.find(
+      (w) => w.word.toLowerCase() === word.toLowerCase()
+    );
 
     if (existingWord) {
       setShowAlert(true);
       return;
     }
 
-    setWords([...words, { word, meaning }]);
+    setWords([
+      ...words,
+      {
+        word: word.charAt(0).toUpperCase() + word.slice(1).toLowerCase(),
+        meaning,
+      },
+    ]);
     setWord('');
     setMeaning('');
   };
