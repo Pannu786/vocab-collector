@@ -21,6 +21,7 @@ const WordsList = ({
   setEditWord,
   editMeaning,
   setEditMeaning,
+  deleteWord,
 }) => {
   const [page, setPage] = useState(1);
   const numPages = Math.ceil(words.length / PAGE_SIZE);
@@ -31,11 +32,21 @@ const WordsList = ({
 
   return (
     <Container fixed maxWidth='md' sx={{ flexGrow: 1 }}>
-      <List sx={{ maxHeight: '20rem', overflow: 'auto', top: 5 }}>
+      <List
+        sx={{
+          maxHeight: '20rem',
+          overflow: 'auto',
+          top: 5,
+          position: 'relative',
+        }}
+      >
         {words
           .slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE)
           .map(({ word, meaning }, i) => (
-            <ListItem key={i}>
+            <ListItem
+              key={i}
+              sx={{ display: 'flex', justifyContent: 'space-between' }}
+            >
               <ListItemText primary={word} secondary={meaning} />{' '}
               <DeleteWords
                 i={i}
@@ -43,6 +54,7 @@ const WordsList = ({
                 words={words}
                 meaning={meaning}
                 word={word}
+                deleteWord={deleteWord}
               />
               <EditWord
                 words={words}

@@ -3,7 +3,7 @@ import { IconButton } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import DeleteConfirmation from './DeleteConfirmation';
 
-const DeleteWords = ({ setWords, i, meaning, word, words }) => {
+const DeleteWords = ({ setWords, i, meaning, word, words, deleteWord }) => {
   const [confirmationOpen, setConfirmationOpen] = useState(false);
 
   const handleDelete = () => {
@@ -12,9 +12,9 @@ const DeleteWords = ({ setWords, i, meaning, word, words }) => {
 
   const handleConfirmDelete = () => {
     if (words) {
-      const filteredWords = words.filter((w, index) => index !== i);
-      setWords(filteredWords);
+      deleteWord(i);
     }
+
     setConfirmationOpen(false);
   };
 

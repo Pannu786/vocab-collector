@@ -4,16 +4,7 @@ const AddWordsForm = ({ word, setWord, meaning, setMeaning, addWord }) => {
   return (
     <Container
       sx={{
-        position: 'fixed',
-        top: 59,
-        left: 0,
-        right: 0,
         zIndex: 1,
-        '@media (max-width: 600px)': {
-          // adjust for smaller screens
-          top: '20%',
-          maxHeight: '70vh',
-        },
         textAlgin: 'center',
       }}
       maxWidth='sm'
@@ -31,16 +22,20 @@ const AddWordsForm = ({ word, setWord, meaning, setMeaning, addWord }) => {
           value={meaning}
           onChange={(e) => setMeaning(e.target.value)}
         />
-        <Button
+        <Box
           size='small'
           variant='outlined'
-          sx={{ m: 'auto', p: 1, width: 100, my: 4 }}
-          onClick={addWord}
-          font='bold'
-          disabled={!word || !meaning}
+          sx={{ m: 'auto', p: 1, mb: '1rem' }}
         >
-          New Word
-        </Button>
+          <Button
+            variant='contained'
+            onClick={addWord}
+            font='bold'
+            disabled={!word || !meaning}
+          >
+            New Word
+          </Button>
+        </Box>
       </Box>
     </Container>
   );
