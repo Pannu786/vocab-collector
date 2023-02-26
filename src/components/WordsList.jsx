@@ -5,6 +5,7 @@ import {
   ListItemText,
   Container,
   Pagination,
+  TextField,
 } from '@mui/material';
 import DeleteWords from './DeleteWords';
 import EditWord from './EditWord';
@@ -24,14 +25,33 @@ const WordsList = ({
   deleteWord,
 }) => {
   const [page, setPage] = useState(1);
+  const [searchTerm, setSearchTerm] = useState('');
+
+  const filteredWords = words.filter((w) =>
+    w.word.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   const numPages = Math.ceil(words.length / PAGE_SIZE);
 
   const handlePageChange = (event, value) => {
     setPage(value);
   };
 
+  const handleSearchChange = (event) => {
+    setSearchTerm(event.target.value);
+    setPage(1);
+  };
+
   return (
     <Container fixed maxWidth='md' sx={{ flexGrow: 1 }}>
+      <TextField
+        size='small'
+        label='Search Word '
+        value={searchTerm}
+        onChange={handleSearchChange}
+        fullWidth
+        margin='dense'
+      />
       <List
         sx={{
           maxHeight: '20rem',
@@ -40,7 +60,7 @@ const WordsList = ({
           position: 'relative',
         }}
       >
-        {words
+        {filteredWords
           .slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE)
           .map(({ word, meaning }, i) => (
             <ListItem
@@ -71,7 +91,7 @@ const WordsList = ({
               />
             </ListItem>
           ))}
-        {words.length === 0 && (
+        {filteredWords.length === 0 && (
           <ListItem>
             <ListItemText primary='No words added yet' />
           </ListItem>

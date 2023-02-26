@@ -32,6 +32,9 @@ const EditWord = ({
   };
 
   const handleSave = () => {
+    if (editWord.trim() === '' || editMeaning.trim() === '') {
+      return;
+    }
     const updatedWords = words.map((w, index) => {
       if (index === i) {
         return {
