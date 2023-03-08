@@ -17,7 +17,6 @@ const wordSchema = new mongoose.Schema({
 
 const Word = mongoose.model('Word', wordSchema);
 
-
 app.listen(PORT, () => {
   console.log(`Server started on port ${PORT}`);
 });
@@ -27,7 +26,14 @@ app.get('/', (req, res) => {
 });
 
 app.get('/api/words', (req, res) => {
-  // TODO: fetch all words from the database and send them as a response
+  Word.find()
+    .select('word meaning')
+    .then((words) => {
+      res.json(words);
+    })
+    .catch((err) => {
+      res.status(500).json({ error: err.message });
+    });
 });
 
 app.post('/api/words', (req, res) => {
