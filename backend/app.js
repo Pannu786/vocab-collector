@@ -25,23 +25,32 @@ app.get('/', (req, res) => {
   res.send('Server is up and running yo!');
 });
 
-app.get('/api/words', (req, res) => {
-  Word.find()
-    .select('word meaning')
-    .then((words) => {
-      res.json(words);
-    })
-    .catch((err) => {
-      res.status(500).json({ error: err.message });
-    });
+app.get('/api/words', async (req, res) => {
+  try {
+    const words = await Word.find({});
+    res.status(200).json(words);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Server error' });
+  }
 });
 
-app.post('/api/words', (req, res) => {
-  //TODO: add a new word to the database
-});
+app.put('/api/words/:id', async (req, res) => {
+  try {
+    const id = req.params.id;
+    const { word, meaning } = req.body;
 
-app.put('/api/words/:id', (req, res) => {
-  //TODO: update the word with the given id in the database
+    const updatedWord = await Word.findByIdAndUpdate(
+      id,
+      { word, meaning },
+      { new: true }
+    );
+
+    res.status(200).json(updatedWord);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Server error' });
+  }
 });
 
 mongoose
