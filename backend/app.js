@@ -8,10 +8,12 @@ const wordSchema = new mongoose.Schema({
   word: {
     type: String,
     required: true,
+    minlength: 2,
   },
   meaning: {
     type: String,
     required: true,
+    minlength: 5,
   },
 });
 
@@ -53,9 +55,20 @@ app.put('/api/words/:id', async (req, res) => {
   }
 });
 
+app.post('/api/words', async (req, res) => {
+  try {
+    const { word, meaning } = req.body;
+    const newWord = new Word({ word, meaning });
+    const saveWord = await newWord.save();
+    res.status(201).json(saveWord);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Server error' });
+  }
+});
 mongoose
   .connect('mongodb://localhost/words-db', {
-    useNewUrlParse: true,
+    useNewUrlParser: true,
     useUnifiedTopology: true,
   })
   .then(() => console.log('MongoDB connected...'))
