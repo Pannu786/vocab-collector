@@ -7,9 +7,10 @@ import {
   Pagination,
   TextField,
 } from '@mui/material';
+import { getAllWords, createWord, updateWord, deleteWord } from '../api';
 import DeleteWords from './DeleteWords';
 import EditWord from './EditWord';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const PAGE_SIZE = 4;
 
@@ -24,6 +25,7 @@ const WordsList = ({
   setEditMeaning,
   deleteWord,
 }) => {
+  const [words, setwords] = useState([]);
   const [page, setPage] = useState(1);
   const [searchTerm, setSearchTerm] = useState('');
 
