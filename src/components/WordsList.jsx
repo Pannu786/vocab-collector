@@ -25,9 +25,14 @@ const WordsList = ({
   setEditMeaning,
   deleteWord,
 }) => {
-  const [words, setwords] = useState([]);
   const [page, setPage] = useState(1);
   const [searchTerm, setSearchTerm] = useState('');
+
+  useEffect(() => {
+    getAllWords().then((data) => {
+      setWords(data);
+    });
+  }, []);
 
   const filteredWords = words.filter((w) =>
     w.word.toLowerCase().includes(searchTerm.toLowerCase())
@@ -44,6 +49,18 @@ const WordsList = ({
     setPage(1);
   };
 
+
+  const handleUpdateWord = (i, newWord, newMeaning) => {
+    updateWord(words[i]._id, newWord, newMeaning).then(() => {
+      const updatedWords = [...words];
+      updatedWords[i].word = newWord;
+      updatedWords[i].meaning = newMeaning;
+      setWords(updatedWords);
+      setEditWord('');
+      setEditMeaning('');
+    });
+  };
+  
   return (
     <Container fixed maxWidth='md' sx={{ flexGrow: 1 }}>
       <TextField
@@ -90,6 +107,7 @@ const WordsList = ({
                 setEditWord={setEditWord}
                 setMeaning={setMeaning}
                 i={i + (page - 1) * PAGE_SIZE}
+                handleUpdateWord={handleUpdateWord}
               />
             </ListItem>
           ))}
